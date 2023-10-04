@@ -1,9 +1,20 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
+import { GameResult } from './counter-strike-game-results';
+import { FC } from 'react';
 
-export const Play = () => {
+interface PlayProps {
+    addNewGameResult: (r: GameResult) => void;
+};
+
+export const Play : FC<PlayProps> = ({addNewGameResult}) => {
 
     const navigate = useNavigate();
+
+    const endGame = (won: boolean) => {
+        addNewGameResult(won);
+        navigate(-2);
+    };
 
     return (
         <>
@@ -11,9 +22,21 @@ export const Play = () => {
         <Button
             variant="outlined"
             size="large"
-            onClick={() => navigate(-2)}
+            onClick={() => {endGame(true)}
+            }
         >
-            Done</Button>
+            Win
+        </Button>
+        <br></br>
+        <br></br>
+        <Button
+            variant="outlined"
+            size="large"
+            onClick={() => {endGame(false)}
+        }
+        >
+            Loss
+        </Button>
         </>
     );
   };
