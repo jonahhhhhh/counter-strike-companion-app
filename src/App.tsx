@@ -11,6 +11,10 @@ import { Home } from "./Home";
 import { Setup } from "./Setup";
 import { Play } from "./Play";
 import { GameResult, getWinningPercentageDisplay } from './counter-strike-game-results';
+import { AppBar, Box, Toolbar } from '@mui/material';
+import ComputerIcon from '@mui/icons-material/Computer';
+import Typography from '@mui/material/Typography';
+import TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 
 const counterStrikeResults: GameResult[] = [];
 
@@ -30,14 +34,14 @@ const App = () => {
     {
       path: "/",
       element: <Home
-        winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)}
+        winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
       />,
     },
     {
       path: "/setup",
-      element: <Setup 
-      num={num}
-      setNum={setNum}
+      element: <Setup
+        num={num}
+        setNum={setNum}
       />,
     },
     {
@@ -48,10 +52,27 @@ const App = () => {
     },
   ]);
 
-    return (
-        <div className="App">
+  return (
+    <div className="App">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" sx={{ overflow: 'hidden', bgcolor: 'MediumSeaGreen' }}>
+          <Toolbar>
+            <ComputerIcon sx={{ mr: 3, fontSize: '2em' }}></ComputerIcon>
+            <Typography variant='h6'>
+              Counter-Strike 2 Companion App
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <Box sx={{ pl: 4, pr: 4, textAlign: 'left' }}>
         <RouterProvider router={router} />
-      </div>
+      </Box>
+
+    </div>
+
+
+
+
   );
 };
 
