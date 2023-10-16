@@ -86,6 +86,46 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                                     </Typography>
                                 </TableCell>
                             </TableRow>
+
+
+                            <TableRow>
+                                <TableCell>
+                                    <Typography fontSize={20}>
+                                        Last Played
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography  fontSize={20}>
+                                        3d ago
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Typography fontSize={20}>
+                                        Shortest Game
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography  fontSize={20}>
+                                        30 min
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Typography fontSize={20}>
+                                        Longest Game
+                                    </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography  fontSize={20}>
+                                        1 hour
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+
+
                         </TableBody>
                     </Table>
                 </Paper>
