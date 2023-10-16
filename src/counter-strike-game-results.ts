@@ -5,10 +5,14 @@ export interface WinningPercentageDisplay {
     winningPercentage: string; // Formatted to two decimal places with a % sign
     wins: number;
     losses: number;
+    gameStart: string;
+    gameEnd: string;
 };
 
 export const getWinningPercentageDisplay = (results: GameResult[]): WinningPercentageDisplay => {
 
+    const gameStart = "";
+    const gameEnd = "";
     const wins = results.filter(x => x).length;
     const losses = results.filter(x => !x).length;
     const totalGames = results.length;
@@ -17,13 +21,13 @@ export const getWinningPercentageDisplay = (results: GameResult[]): WinningPerce
         : 0
     ;
 
-    // console.log(wins, results.length);
-
     return {
         // totalGames: totalGames
         totalGames
         , winningPercentage: `${wp.toFixed(2)}%`
         , wins
         , losses
+        , gameStart
+        , gameEnd
     };
 };
