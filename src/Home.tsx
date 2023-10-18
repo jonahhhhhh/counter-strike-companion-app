@@ -1,17 +1,18 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
-import { WinningPercentageDisplay, getWinningPercentageDisplay } from './counter-strike-game-results';
+import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay, getWinningPercentageDisplay } from './counter-strike-game-results';
 import { FC } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Table, TableBody, TableRow, TableCell, Typography, Paper } from '@mui/material';
 
 interface HomeProps {
-    winningPercentageDisplay: WinningPercentageDisplay;
+    winningPercentageDisplay: WinningPercentageDisplay
+    , generalGameTimeFacts: GeneralGameTimeFactsDisplay
 
 };
 
 
-export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
+export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFacts}) => {
     
     const navigate = useNavigate();
 
@@ -96,7 +97,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                                 </TableCell>
                                 <TableCell>
                                     <Typography  fontSize={20}>
-                                        3d ago
+                                        {generalGameTimeFacts.lastPlayed} ago
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -108,7 +109,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                                 </TableCell>
                                 <TableCell>
                                     <Typography  fontSize={20}>
-                                        30 min
+                                    {generalGameTimeFacts.shortestGame}
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -120,7 +121,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                                 </TableCell>
                                 <TableCell>
                                     <Typography  fontSize={20}>
-                                        1 hour
+                                    {generalGameTimeFacts.longestGame}
                                     </Typography>
                                 </TableCell>
                             </TableRow>
