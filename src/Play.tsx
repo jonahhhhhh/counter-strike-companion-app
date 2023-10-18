@@ -12,7 +12,11 @@ export const Play : FC<PlayProps> = ({addNewGameResult}) => {
     const navigate = useNavigate();
 
     const endGame = (won: boolean) => {
-        addNewGameResult(won);
+        addNewGameResult({
+            won: won
+            , start: ""
+            , end: ""
+        });
         navigate(-2);
     };
 
