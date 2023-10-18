@@ -1,6 +1,6 @@
 import { durationFormatter } from 'human-readable';
 
-const formatTime = durationFormatter();
+const formatTime = durationFormatter<string>();
 
 export type GameResult = {
     won: boolean;
