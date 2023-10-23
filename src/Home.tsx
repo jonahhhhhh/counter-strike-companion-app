@@ -6,14 +6,17 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Table, TableBody, TableRow, TableCell, Typography, Paper } from '@mui/material';
 
 interface HomeProps {
-    winningPercentageDisplay: WinningPercentageDisplay
-    , generalGameTimeFacts: GeneralGameTimeFactsDisplay
+    winningPercentageDisplay: WinningPercentageDisplay;
+    generalGameTimeFacts: GeneralGameTimeFactsDisplay;
+    setTitle: (t: string) => void;
 
 };
 
 
-export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFacts}) => {
+export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFacts, setTitle}) => {
     
+    setTitle("Counter Strike 2 Companion App");
+
     const navigate = useNavigate();
 
     return (

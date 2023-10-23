@@ -2,12 +2,16 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import { GameResult } from './counter-strike-game-results';
 import { FC, useState } from 'react';
+import { Box } from '@mui/material';
 
 interface PlayProps {
     addNewGameResult: (r: GameResult) => void;
+    setTitle: (t: string) => void;
 };
 
-export const Play : FC<PlayProps> = ({addNewGameResult}) => {
+export const Play : FC<PlayProps> = ({addNewGameResult, setTitle}) => {
+
+    setTitle("Play Game");
 
     const navigate = useNavigate();
 
@@ -23,26 +27,28 @@ export const Play : FC<PlayProps> = ({addNewGameResult}) => {
     };
 
     return (
-        <>
-        <h3>Game has started...</h3>
-        <Button
-            variant="outlined"
-            size="large"
-            onClick={() => {endGame(true)}
+        <Box
+            sx={{ mt: 2}}
+        >
+            <br></br>
+            <Button
+                variant="outlined"
+                size="large"
+                onClick={() => {endGame(true)}
+                }
+            >
+                Win
+            </Button>
+            <br></br>
+            <br></br>
+            <Button
+                variant="outlined"
+                size="large"
+                onClick={() => {endGame(false)}
             }
-        >
-            Win
-        </Button>
-        <br></br>
-        <br></br>
-        <Button
-            variant="outlined"
-            size="large"
-            onClick={() => {endGame(false)}
-        }
-        >
-            Loss
-        </Button>
-        </>
+            >
+                Loss
+            </Button>
+        </Box>
     );
   };

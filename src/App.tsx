@@ -22,6 +22,7 @@ const App = () => {
 
   const [num, setNum] = useState(1);
   const [gameResults, setGameResults] = useState<GameResult[]>(counterStrikeResults);
+  const [title, setTitle] = useState<string>("Counter Strike 2 Companion App");
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults(
     [
@@ -36,6 +37,7 @@ const App = () => {
       element: <Home
         winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
         generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
+        setTitle={setTitle}
       />,
     },
     {
@@ -43,12 +45,14 @@ const App = () => {
       element: <Setup
         num={num}
         setNum={setNum}
+        setTitle={setTitle}
       />,
     },
     {
       path: "/play",
       element: <Play
         addNewGameResult={addNewGameResult}
+        setTitle={setTitle}
       />,
     },
   ]);
@@ -58,9 +62,16 @@ const App = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ overflow: 'hidden', bgcolor: 'MediumSeaGreen' }}>
           <Toolbar>
-            <ComputerIcon sx={{ mr: 3, fontSize: '2em' }}></ComputerIcon>
+            { title == "Counter Strike 2 Companion App" && 
+              <ComputerIcon 
+              sx={{
+                mr: 3,
+                fontSize: '2em',
+                display: title == "Counter Strike 2 Companion App" ? 'inherit' : 'none'
+              }}></ComputerIcon>
+            }
             <Typography variant='h6'>
-              Counter-Strike 2 Companion App
+              {title}
             </Typography>
           </Toolbar>
         </AppBar>
