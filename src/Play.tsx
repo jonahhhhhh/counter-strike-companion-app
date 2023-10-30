@@ -22,6 +22,7 @@ export const Play : FC<PlayProps> = ({addNewGameResult, setTitle}) => {
             won: won
             , start: startTimestamp
             , end: new Date().toISOString()
+            , map: "inferno"
         });
         navigate(-2);
     };

@@ -6,6 +6,7 @@ export type GameResult = {
     won: boolean;
     start: string;
     end: string;
+    map: string;
 }
 
 export interface WinningPercentageDisplay {
@@ -58,3 +59,25 @@ export const getGeneralGameTimeFacts = (results: GameResult[], fromDateMilliseco
     }
 }
 
+export const getUniqueMaps = (results: GameResult[]) => {
+    
+    const maps = results.map(x => x.map);
+
+    return [
+       // ...new Set(maps)
+    ];
+};
+
+export const getWinningPercentageByMap = (results: GameResult[]) => {
+
+    const maps = getUniqueMaps(results);
+
+    return maps.map(
+        x => ({
+            map: x 
+            , wp: getWinningPercentageDisplay(
+                results.filter(y => y.map == x)
+            )
+        })
+    );
+};
