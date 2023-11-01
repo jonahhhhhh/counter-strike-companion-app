@@ -1,17 +1,21 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
-import { GameResult } from './counter-strike-game-results';
-import { FC, useState } from 'react';
+import { GameResult, getWinningPercentageDisplay } from './counter-strike-game-results';
+import { FC, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 
 interface PlayProps {
     addNewGameResult: (r: GameResult) => void;
     setTitle: (t: string) => void;
+    map: string;
 };
 
-export const Play : FC<PlayProps> = ({addNewGameResult, setTitle}) => {
+export const Play : FC<PlayProps> = ({addNewGameResult, setTitle, map}) => {
 
-    setTitle("Play Game");
+    useEffect(
+        () => setTitle(`Playing on ${map}`)
+        , []
+    );
 
     const navigate = useNavigate();
 
@@ -22,16 +26,16 @@ export const Play : FC<PlayProps> = ({addNewGameResult, setTitle}) => {
             won: won
             , start: startTimestamp
             , end: new Date().toISOString()
-            , map: "inferno"
+            , map: map
         });
         navigate(-2);
     };
 
     return (
+        
         <Box
-            sx={{ mt: 2}}
+            sx={{ mt: 4}}
         >
-            <br></br>
             <Button
                 variant="outlined"
                 size="large"

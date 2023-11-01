@@ -64,7 +64,7 @@ export const getUniqueMaps = (results: GameResult[]) => {
     const maps = results.map(x => x.map);
 
     return [
-       // ...new Set(maps)
+       ...new Set(maps)
     ];
 };
 

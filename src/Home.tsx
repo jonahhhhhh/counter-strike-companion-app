@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay, getWinningPercentageDisplay } from './counter-strike-game-results';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Table, TableBody, TableRow, TableCell, Typography, Paper } from '@mui/material';
 
@@ -9,13 +9,15 @@ interface HomeProps {
     winningPercentageDisplay: WinningPercentageDisplay;
     generalGameTimeFacts: GeneralGameTimeFactsDisplay;
     setTitle: (t: string) => void;
-
 };
 
 
 export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFacts, setTitle}) => {
     
-    setTitle("Counter Strike 2 Companion App");
+    useEffect(
+        () => setTitle("Counter Strike 2 Companion App")
+        , []
+    );
 
     const navigate = useNavigate();
 
@@ -135,6 +137,8 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFa
                 </Paper>
             </Grid>
         </Grid>
+
+
         </>
         
 

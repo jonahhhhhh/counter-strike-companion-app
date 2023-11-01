@@ -23,6 +23,7 @@ const App = () => {
   const [num, setNum] = useState(1);
   const [gameResults, setGameResults] = useState<GameResult[]>(counterStrikeResults);
   const [title, setTitle] = useState<string>("Counter Strike 2 Companion App");
+  const [map, setMap] = useState<string>("");
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults(
     [
@@ -46,6 +47,8 @@ const App = () => {
         num={num}
         setNum={setNum}
         setTitle={setTitle}
+        map={map}
+        setMap={setMap}
       />,
     },
     {
@@ -53,6 +56,7 @@ const App = () => {
       element: <Play
         addNewGameResult={addNewGameResult}
         setTitle={setTitle}
+        map={map}
       />,
     },
   ]);
