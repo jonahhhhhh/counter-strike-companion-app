@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
-import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay, getWinningPercentageDisplay } from './counter-strike-game-results';
+import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay, getWinningPercentageDisplay, getWinningPercentageByMap } from './counter-strike-game-results';
 import { FC, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Table, TableBody, TableRow, TableCell, Typography, Paper } from '@mui/material';
@@ -137,7 +137,6 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFa
                 </Paper>
             </Grid>
         </Grid>
-
 
         </>
         
