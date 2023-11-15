@@ -1,18 +1,19 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
-import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay, getWinningPercentageDisplay, getWinningPercentageByMap } from './counter-strike-game-results';
+import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay, WinningPercentageByMapDisplay, getWinningPercentageDisplay, getWinningPercentageByMap } from './counter-strike-game-results';
 import { FC, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Table, TableBody, TableRow, TableCell, Typography, Paper } from '@mui/material';
+import { Table, TableBody, TableRow, TableCell, Typography, Paper, Box } from '@mui/material';
 
 interface HomeProps {
     winningPercentageDisplay: WinningPercentageDisplay;
     generalGameTimeFacts: GeneralGameTimeFactsDisplay;
     setTitle: (t: string) => void;
+    getWinningPercentageByMap: WinningPercentageByMapDisplay[];
 };
 
 
-export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFacts, setTitle}) => {
+export const Home: FC<HomeProps> = ({wpByMap, winningPercentageDisplay, generalGameTimeFacts, setTitle}) => {
     
     useEffect(
         () => setTitle("Counter Strike 2 Companion App")
@@ -137,6 +138,19 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay, generalGameTimeFa
                 </Paper>
             </Grid>
         </Grid>
+
+        <Box>
+            {
+                wpByMap.map(x => (
+                    <Box>
+                        {x.map}
+                    </Box>
+                    <Box>
+                        {x.winningPercentageByMap}
+                    </Box>
+                ))
+            }
+        </Box>
 
         </>
         

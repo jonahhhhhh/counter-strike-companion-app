@@ -10,7 +10,7 @@ import {
 import { Home } from "./Home";
 import { Setup } from "./Setup";
 import { Play } from "./Play";
-import { GameResult, getWinningPercentageDisplay, getGeneralGameTimeFacts } from './counter-strike-game-results';
+import { GameResult, getWinningPercentageDisplay, getGeneralGameTimeFacts, getWinningPercentageByMap} from './counter-strike-game-results';
 import { AppBar, Box, Toolbar } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
 import Typography from '@mui/material/Typography';
@@ -39,6 +39,7 @@ const App = () => {
         winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
         generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
         setTitle={setTitle}
+        wpByMap={getWinningPercentageByMap(gameResults)}
       />,
     },
     {
