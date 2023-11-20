@@ -13,7 +13,7 @@ interface HomeProps {
 };
 
 
-export const Home: FC<HomeProps> = ({wpByMap, winningPercentageDisplay, generalGameTimeFacts, setTitle}) => {
+export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentageDisplay, generalGameTimeFacts, setTitle}) => {
     
     useEffect(
         () => setTitle("Counter Strike 2 Companion App")
@@ -141,13 +141,16 @@ export const Home: FC<HomeProps> = ({wpByMap, winningPercentageDisplay, generalG
 
         <Box>
             {
-                wpByMap.map(x => (
-                    <Box>
+                getWinningPercentageByMap.map(x => (
+                    <Box key={x.map}>
+                        <Box>
                         {x.map}
                     </Box>
                     <Box>
                         {x.winningPercentageByMap}
                     </Box>
+                    </Box>
+                    
                 ))
             }
         </Box>

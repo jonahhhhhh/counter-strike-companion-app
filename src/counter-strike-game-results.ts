@@ -84,7 +84,7 @@ export const getUniqueMaps = (results: GameResult[]) => {
 
 export interface WinningPercentageByMapDisplay {
     map: string;
-    winningPercentageByMap: number;
+    winningPercentageByMap: string;
 }
 
 export const getWinningPercentageByMap = (results: GameResult[]): WinningPercentageByMapDisplay[] => {
@@ -94,9 +94,7 @@ export const getWinningPercentageByMap = (results: GameResult[]): WinningPercent
     return maps.map(
         x => ({
             map: x 
-            , winningPercentageByMap: getWinningPercentageDisplay(
-                results.filter(y => y.map == x)
-            )
+            , winningPercentageByMap: getWinningPercentageDisplay(results.filter(y => y.map == x)).winningPercentage
         })
     );
 };

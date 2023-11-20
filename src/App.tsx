@@ -39,7 +39,7 @@ const App = () => {
         winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
         generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
         setTitle={setTitle}
-        wpByMap={getWinningPercentageByMap(gameResults)}
+        getWinningPercentageByMap={getWinningPercentageByMap(gameResults)}
       />,
     },
     {
