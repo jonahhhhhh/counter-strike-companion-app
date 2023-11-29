@@ -11,10 +11,12 @@ import { Home } from "./Home";
 import { Setup } from "./Setup";
 import { Play } from "./Play";
 import { GameResult, getWinningPercentageDisplay, getGeneralGameTimeFacts, getWinningPercentageByMap} from './counter-strike-game-results';
-import { AppBar, Box, Toolbar } from '@mui/material';
+import { AppBar, TextField, Box, Dialog, DialogActions, useTheme, DialogContent, DialogContentText, DialogTitle, IconButton, Toolbar, Button, useMediaQuery } from '@mui/material';
+import { SettingsOutlined, TextFields } from '@mui/icons-material';
 import ComputerIcon from '@mui/icons-material/Computer';
 import Typography from '@mui/material/Typography';
 import TableBarOutlined from '@mui/icons-material/TableBarOutlined'
+import localForage from 'localforage';
 
 const counterStrikeResults: GameResult[] = [];
 
@@ -24,6 +26,12 @@ const App = () => {
   const [gameResults, setGameResults] = useState<GameResult[]>(counterStrikeResults);
   const [title, setTitle] = useState<string>("Counter Strike 2 Companion App");
   const [map, setMap] = useState<string>("");
+
+  const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [emailAddress, setEmailAddress] = React.useState("")
+
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults(
     [
@@ -75,15 +83,71 @@ const App = () => {
                 display: title == "Counter Strike 2 Companion App" ? 'inherit' : 'none'
               }}></ComputerIcon>
             }
-            <Typography variant='h6'>
+            <Typography variant='h6' textAlign='left'>
               {title}
             </Typography>
+            <IconButton
+              size='small'
+              onClick={() => setSettingsOpen(true)}
+              >
+              <SettingsOutlined />
+
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
       <Box sx={{ pl: 4, pr: 4, textAlign: 'left' }}>
         <RouterProvider router={router} />
       </Box>
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={settingsOpen}
+        onClose={
+          () => setSettingsOpen(false)
+        }
+      >
+        <DialogTitle id="responsive-dialog-title">
+          Settings
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Your email address will be used to save/load game results. We will
+            not send you any spam!
+          </DialogContentText>
+
+          <TextField 
+            label="Enter your email address"
+            variant="outlined"
+            fullWidth
+            value={emailAddress}
+            onChange={
+              (e) => setEmailAddress(e.target.value)
+            }
+            sx={{
+              mt: 3
+            }}
+          />
+
+
+
+        </DialogContent>
+        <DialogActions>
+          <Button 
+            variant={emailAddress.length > 0 ? 'contained' : 'outlined'}
+            onClick={
+            async() => {
+              await localForage.setItem('email', emailAddress);
+              setSettingsOpen(false);
+              }
+            }
+            autoFocus>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
 
     </div>
 
