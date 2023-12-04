@@ -151,7 +151,41 @@ export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentag
             </Grid>
         </Grid>
 
-        <Box>
+        <Grid container spacing={3}>
+            <Grid xs={12} md={6}>
+                <Paper elevation={3} sx={{overflow: 'hidden'}}>
+                    <Typography sx={{fontSize: 20, ml: 2, mt: 3, mb: 3}} color='text.disabled' >
+                        WINNING PERCENTAGE BY MAP
+                    </Typography>
+                    <Box>
+                        <Table>
+                        <TableBody>
+                                {
+                                    getWinningPercentageByMap.map(x => (
+                                        <TableRow
+                                            key={x.map}
+                                        >
+                                            <TableCell>
+                                                <Typography fontSize={20}>
+                                                {x.map}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography fontSize={20}>
+                                                    {x.winningPercentageByMap}
+                                                </Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </Box>
+                </Paper>
+            </Grid>
+        </Grid>
+
+        {/* <Box>
             {
                 getWinningPercentageByMap.map(x => (
                     <Box key={x.map}>
@@ -165,7 +199,7 @@ export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentag
                     
                 ))
             }
-        </Box>
+        </Box> */}
 
         </>
         
