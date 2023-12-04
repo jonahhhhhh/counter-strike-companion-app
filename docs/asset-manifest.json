@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/counter-strike/static/css/main.073c9b0a.css",
+    "main.js": "/counter-strike/static/js/main.b4cb5b6a.js",
+    "static/js/787.841508b3.chunk.js": "/counter-strike/static/js/787.841508b3.chunk.js",
+    "index.html": "/counter-strike/index.html",
+    "main.073c9b0a.css.map": "/counter-strike/static/css/main.073c9b0a.css.map",
+    "main.b4cb5b6a.js.map": "/counter-strike/static/js/main.b4cb5b6a.js.map",
+    "787.841508b3.chunk.js.map": "/counter-strike/static/js/787.841508b3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.b4cb5b6a.js"
+  ]
+}
