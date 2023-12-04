@@ -121,7 +121,7 @@ export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentag
                                     <Typography  fontSize={20}>
                                     {
                                         winningPercentageDisplay.totalGames > 0
-                                        ? `${generalGameTimeFacts.shortestGame} ago`
+                                        ? `${generalGameTimeFacts.shortestGame}`
                                         : ''
                                     }   
                                     </Typography>
@@ -137,7 +137,7 @@ export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentag
                                     <Typography  fontSize={20}>
                                     {
                                         winningPercentageDisplay.totalGames > 0
-                                        ? `${generalGameTimeFacts.longestGame} ago`
+                                        ? `${generalGameTimeFacts.longestGame}`
                                         : ''
                                     }   
                                     </Typography>

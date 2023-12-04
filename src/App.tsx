@@ -17,7 +17,7 @@ import ComputerIcon from '@mui/icons-material/Computer';
 import Typography from '@mui/material/Typography';
 import TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 import localForage from 'localforage';
-import { saveGameToCloud } from './tca-cloud-api';
+import { loadGamesFromCloud, saveGameToCloud } from './tca-cloud-api';
 
 const counterStrikeResults: GameResult[] = [];
 
@@ -33,18 +33,30 @@ const App = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [emailAddress, setEmailAddress] = React.useState("")
+  const [emailAddressUpdatedCount, setEmailAddressUpdatedCount] = React.useState(0);
 
   useEffect(
     () => {
-      const loadEmail = async () => {
-        if (!ignore) {
-          setEmailAddress(
-            await localForage.getItem<string>('email') ?? ""
-          )
+      const init = async () => {
+        if (!ignore) { 
+
+          const email = await localForage.getItem<string>('email') ?? "";
+
+          if (email.length > 0) {
+
+            setEmailAddress(email);
+
+            const cloudGameResults = await loadGamesFromCloud(
+              email
+              , 'tca-counter-strike-fall-2023'
+            );
+
+            setGameResults(cloudGameResults)
+          }
         }
       };
       let ignore = false;
-      loadEmail();
+      init();
 
       return(
         //Returns a cleanup function
@@ -53,7 +65,7 @@ const App = () => {
         }
       );
     }
-    , []
+    , [emailAddressUpdatedCount]
   );
 
 
@@ -175,6 +187,7 @@ const App = () => {
             onClick={
             async() => {
               await localForage.setItem('email', emailAddress);
+              setEmailAddressUpdatedCount(emailAddressUpdatedCount + 1);
               setSettingsOpen(false);
               }
             }
