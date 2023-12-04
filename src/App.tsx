@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -17,6 +17,7 @@ import ComputerIcon from '@mui/icons-material/Computer';
 import Typography from '@mui/material/Typography';
 import TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 import localForage from 'localforage';
+import { saveGameToCloud } from './tca-cloud-api';
 
 const counterStrikeResults: GameResult[] = [];
 
@@ -30,15 +31,51 @@ const App = () => {
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
   const [emailAddress, setEmailAddress] = React.useState("")
 
+  useEffect(
+    () => {
+      const loadEmail = async () => {
+        if (!ignore) {
+          setEmailAddress(
+            await localForage.getItem<string>('email') ?? ""
+          )
+        }
+      };
+      let ignore = false;
+      loadEmail();
 
-  const addNewGameResult = (newGameResult: GameResult) => setGameResults(
-    [
-      ...gameResults
-      , newGameResult
-    ]
+      return(
+        //Returns a cleanup function
+        () => {
+          ignore = true;
+        }
+      );
+    }
+    , []
   );
+
+
+  const addNewGameResult = async (newGameResult: GameResult) => {
+
+    // If we have an email address, save the game to the cloud
+    if (emailAddress.length > 0) {
+      await saveGameToCloud(
+        emailAddress
+        , 'tca-counter-strike-fall-2023'
+        , newGameResult.end
+        , newGameResult
+      );
+    }
+    // Optimistically update lifted state
+    setGameResults(
+      [
+        ...gameResults
+        , newGameResult
+      ]
+    );
+  }
 
   const router = createHashRouter([
     {

@@ -103,7 +103,11 @@ export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentag
                                 </TableCell>
                                 <TableCell>
                                     <Typography  fontSize={20}>
-                                        {generalGameTimeFacts.lastPlayed} ago
+                                    {
+                                        winningPercentageDisplay.totalGames > 0
+                                        ? `${generalGameTimeFacts.lastPlayed} ago`
+                                        : ''
+                                    }     
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -115,7 +119,11 @@ export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentag
                                 </TableCell>
                                 <TableCell>
                                     <Typography  fontSize={20}>
-                                    {generalGameTimeFacts.shortestGame}
+                                    {
+                                        winningPercentageDisplay.totalGames > 0
+                                        ? `${generalGameTimeFacts.shortestGame} ago`
+                                        : ''
+                                    }   
                                     </Typography>
                                 </TableCell>
                             </TableRow>
@@ -127,7 +135,11 @@ export const Home: FC<HomeProps> = ({getWinningPercentageByMap, winningPercentag
                                 </TableCell>
                                 <TableCell>
                                     <Typography  fontSize={20}>
-                                    {generalGameTimeFacts.longestGame}
+                                    {
+                                        winningPercentageDisplay.totalGames > 0
+                                        ? `${generalGameTimeFacts.longestGame} ago`
+                                        : ''
+                                    }   
                                     </Typography>
                                 </TableCell>
                             </TableRow>
