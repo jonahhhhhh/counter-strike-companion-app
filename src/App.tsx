@@ -132,7 +132,7 @@ const App = () => {
                 display: title == "Counter Strike 2 Companion App" ? 'inherit' : 'none'
               }}></ComputerIcon>
             }
-            <Typography variant='h6' textAlign='left'>
+            <Typography variant='h6' textAlign='left' sx={{flexGrow: 1}}>
               {title}
             </Typography>
             <IconButton
