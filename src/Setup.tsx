@@ -1,4 +1,4 @@
-import { Box, FormControl, InputLabel, NativeSelect, MenuItem } from '@mui/material';
+import { Box, FormControl, InputLabel, NativeSelect, MenuItem, Alert, Snackbar } from '@mui/material';
 import Button from '@mui/material/Button';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -29,14 +29,36 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle, map, setMap}) => {
         setMap(event.target.value as string);  
     }
 
+    const [showWarning, setShowWarning] = useState(false);
+
     return (
 
         <Box
             sx={{ mt: 2}}
         >
+            <Snackbar 
+                anchorOrigin={{ 
+                    vertical: "top"
+                    , horizontal: "center" 
+                }}
+                open={showWarning} 
+                autoHideDuration={2500} 
+                onClose={
+                    () => setShowWarning(false)
+                }
+            >
+                <Alert 
+                    severity="warning" 
+                    sx={{ 
+                        width: '100%' 
+                    }}
+                >
+                    Please slect a map before starting a game.
+                </Alert>
+            </Snackbar>
         <br></br>
         <FormControl fullWidth>
-            <InputLabel variant="standard">Select Map</InputLabel>
+            <InputLabel variant="filled">Select Map</InputLabel>
             <Select
                 value={map}
                 onChange={handleChange}
@@ -56,13 +78,18 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle, map, setMap}) => {
         <br></br>
         <br></br>
             <Button
-                variant="outlined"
+                variant="contained"
                 size="large"
                 onClick={
                     () => {
-                        setNum(num + 1);
-                        navigate('/play');
-                        setMap(map)
+                        if (map.length == 0) {
+                            setShowWarning(true)
+                        } else {
+                            setNum(num + 1);
+                            navigate('/play');
+                            setMap(map)
+                        }
+                        
                     }
                 }
             >

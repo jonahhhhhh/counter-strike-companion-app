@@ -37,7 +37,7 @@ export const Play : FC<PlayProps> = ({addNewGameResult, setTitle, map}) => {
             sx={{ mt: 4}}
         >
             <Button
-                variant="outlined"
+                variant="contained"
                 size="large"
                 onClick={() => {endGame(true)}
                 }
@@ -47,7 +47,7 @@ export const Play : FC<PlayProps> = ({addNewGameResult, setTitle, map}) => {
             <br></br>
             <br></br>
             <Button
-                variant="outlined"
+                variant="contained"
                 size="large"
                 onClick={() => {endGame(false)}
             }
