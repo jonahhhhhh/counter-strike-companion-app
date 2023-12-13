@@ -1,7 +1,7 @@
 {
   "name": "counter-strike",
   "version": "0.1.0",
-  "homepage": "https://2023-fall-adv-fe.github.io/counter-strike",
+  "homepage": "https://jonahhhhhh.github.io/counter-strike-companion-app",
   "private": true,
   "dependencies": {
     "@aws-sdk/util-dynamodb": "^3.465.0",
